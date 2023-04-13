@@ -14,7 +14,7 @@ pipeline {
         stage('Remove') {
             steps {
                 catchError(buildResult:'SUCCESS', stageResult:'SUCCESS'){
-                    echo 'Removing container and deleting all local images'
+                    echo 'Removing container and deletng all local images'
                     sh "docker rm ecommerce-frontend"
                     sh "docker image prune -af"
                     sh "docker builder prune -af"
