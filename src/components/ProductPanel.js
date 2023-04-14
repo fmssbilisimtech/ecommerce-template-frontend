@@ -9,7 +9,7 @@ const ProductPanel = ({ productId, name, image, price }) => {
     const alert = useAlert()
     const { setProductIds, productIds, isLogin, setBasketItems, basketItems } = useContext(StoreContext)
     const user = localStorage.getItem('user')
-    const API_URL = 'http://89.19.23.50:9006'
+    const API_URL = 'http://89.19.23.50:9006/api/v1'
     
     const addBasketHandler = ( productId ) => {
             if(productIds.includes(productId)) {
@@ -17,7 +17,7 @@ const ProductPanel = ({ productId, name, image, price }) => {
             } 
             else {
                 return ( 
-                axios.post(API_URL + "/basket-item/basket-item", {
+                axios.post(API_URL + "/basket/basket-item", {
                     productId: productId,
                     quantity: 1,
                     basketId: '108520d8-90c7-4b42-93e1-260fe2d4a413',

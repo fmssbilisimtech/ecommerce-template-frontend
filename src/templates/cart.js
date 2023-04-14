@@ -9,7 +9,7 @@ export default function Cart() {
     const { productIds, setProductIds, setBasketItems, basketItems } = useContext(StoreContext)
     const [basketData, setBasketData] = useState([])
     const history = useHistory()
-    const API_URL = 'http://89.19.23.50:9006'
+    const API_URL = 'http://89.19.23.50:9006/api/v1'
     const ORDER_URL = 'http://89.19.23.50:9005'
 
     useEffect(() => {
@@ -23,7 +23,7 @@ export default function Cart() {
     }, [])
 
     const handleAmountChange = (index, value, basketItemId) => {
-        axios.put(API_URL + `/basket-item/quantity-increment/${basketItemId}`,{
+        axios.put(API_URL + `/basket/quantity-increment/${basketItemId}`,{
             basketItemId: basketItemId,
             quantity: value,
         } ,
@@ -36,7 +36,7 @@ export default function Cart() {
     }
 
     const handleDeleteItem = (index, basketItemId) => {
-        axios.delete(API_URL + `/basket-item/basket-item/${basketItemId}`, 
+        axios.delete(API_URL + `/basket/basket-item/${basketItemId}`,
             { 
                 headers: authHeader() 
             }
@@ -49,7 +49,7 @@ export default function Cart() {
 
     const handleClearCart = () => {
         if(window.confirm("You're about to clear shopping cart. Is that okay?")) {
-            axios.delete(API_URL + `/basket-item/108520d8-90c7-4b42-93e1-260fe2d4a413`,  
+            axios.delete(API_URL + `/basket/108520d8-90c7-4b42-93e1-260fe2d4a413`,
             {
                 headers: authHeader() 
             }
