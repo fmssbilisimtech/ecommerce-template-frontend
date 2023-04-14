@@ -3,7 +3,7 @@ import { StoreContext } from '../context/index'
 import PropTypes from 'prop-types'
 import { useAlert } from 'react-alert'
 import authHeader from '../services/auth-header'
-import useFetch from 'react-fetch-hook';
+import useFetch from '../hooks/useFetch'
 
 const ProductPanel = ({ productId, name, image, price }) => {
     const alert = useAlert()
