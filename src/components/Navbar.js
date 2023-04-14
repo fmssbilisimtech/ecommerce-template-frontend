@@ -20,7 +20,7 @@ const LoginButton = () => {
     const { showModal, setShowModal } = useContext(StoreContext);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-
+    setLogin(localStorage.getItem('user') != null);
 
     function signIn() {
         AuthService.login(email, password).then(
