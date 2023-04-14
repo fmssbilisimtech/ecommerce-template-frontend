@@ -152,7 +152,7 @@ const LoginButton = () => {
 }
 
 const LogoutButton = () => {
-    const { logout } = useAuth0();
+
   
     return (
       <button className="flex text-2xl items-center lg:text-xl gap-3 sm:flex-row" onClick={() => localStorage.clear()}>
@@ -210,7 +210,7 @@ const HoverableDiv = ({ handleMouseOver, handleMouseOut }) => {
 
 function Navbar() {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-    const {isAuthenticated} = useAuth0()
+
     const [width, setWidth] = useState(window.innerWidth);
     const {productIds} = useContext(StoreContext)
     const location = useLocation()
@@ -241,7 +241,7 @@ function Navbar() {
                 <nav className="hidden md:block">
                     <ul className="flex gap-8">
                         {
-                            isAuthenticated && 
+
                             <li>
                                 <NavLink to="/checkout">Checkout</NavLink>
                             </li>
@@ -251,7 +251,7 @@ function Navbar() {
                 <div>
                     <div className="flex row gap-6">
                         {
-                            isAuthenticated ? <LogoutButton/> : <LoginButton/>
+                             <LoginButton/>
                         }
                         <CartButton items={productIds.length}/>
                     </div>
