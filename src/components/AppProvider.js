@@ -9,10 +9,7 @@ const Footer = () => (
 )
 
 function Content({ children }) {
-    const { isLoading, error } = useAuth0()
 
-    if(isLoading) return null;
-    if(error) return 'error...';
 
     return (
         <>
@@ -27,14 +24,10 @@ function Content({ children }) {
 
 export default function AppProvider(props){
     return(
-        <Auth0Provider
-            domain={process.env.REACT_APP_AUTH_DOMAIN}
-            clientId={process.env.REACT_APP_CLIENT_ID}
-            redirectUri={window.location.origin}
-        >
+
             <StoreProvider>
                 <Content {...props}/>
             </StoreProvider>
-        </Auth0Provider>
+
     );
 }
