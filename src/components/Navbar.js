@@ -277,7 +277,6 @@ function Navbar() {
                             <NavLink to="/products">Products</NavLink>
                         </li>
                         {
-                            isAuthenticated &&
                             <li>
                                 <NavLink to="/checkout">Checkout</NavLink>
                             </li>
@@ -286,7 +285,7 @@ function Navbar() {
                     <div className="mt-10 flex gap-20 justify-center align-center row">
                             <CartButton items={productIds.length}/>
                             {
-                                isAuthenticated ? <LogoutButton/> : <LoginButton/>
+                                <LoginButton/>
                             }
                     </div>
                 </div>
