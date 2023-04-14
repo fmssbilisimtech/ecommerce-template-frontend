@@ -9,8 +9,8 @@ export default function Cart() {
     const { productIds, setProductIds, setBasketItems, basketItems } = useContext(StoreContext)
     const [basketData, setBasketData] = useState([])
     const history = useHistory()
-    const API_URL = 'http://localhost:9006'
-    const ORDER_URL = 'http://localhost:9005'
+    const API_URL = 'http://89.19.23.50:9006'
+    const ORDER_URL = 'http://89.19.23.50:9005'
 
     useEffect(() => {
         axios.get(API_URL + `/basket/basket-basket/108520d8-90c7-4b42-93e1-260fe2d4a413`, 

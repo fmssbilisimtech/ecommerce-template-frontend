@@ -9,7 +9,7 @@ const ProductPanel = ({ productId, name, image, price }) => {
     const alert = useAlert()
     const { setProductIds, productIds, isLogin, setBasketItems, basketItems } = useContext(StoreContext)
     const user = localStorage.getItem('user')
-    const API_URL = 'http://localhost:9006'
+    const API_URL = 'http://89.19.23.50:9006'
     
     const addBasketHandler = ( productId ) => {
             if(productIds.includes(productId)) {
