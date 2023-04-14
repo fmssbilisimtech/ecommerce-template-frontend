@@ -2,8 +2,8 @@ import React, { useContext } from 'react'
 import { StoreContext } from '../context/index'
 import PropTypes from 'prop-types'
 import { useAlert } from 'react-alert'
-import axios from 'axios'
 import authHeader from '../services/auth-header'
+import useFetch from 'react-fetch-hook';
 
 const ProductPanel = ({ productId, name, image, price }) => {
     const alert = useAlert()
@@ -11,27 +11,30 @@ const ProductPanel = ({ productId, name, image, price }) => {
     const user = localStorage.getItem('user')
     const API_URL = 'http://89.19.23.50:9006/api/v1'
 
-    const addBasketHandler = (productId) => {
+    const addBasketHandler = async (productId) => {
         if (productIds.includes(productId)) {
             return alert.show('This product is already in your cart!')
-        }
-        else {
-            return (
-                axios.post(API_URL + "/basket-item/basket-item", {
-                    productId: productId,
-                    quantity: 1,
-                    basketId: '108520d8-90c7-4b42-93e1-260fe2d4a413',
-                }, {
+        } else {
+            try {
+                const response = await useFetch(API_URL + '/basket-item/basket-item', {
+                    method: 'POST',
                     headers: authHeader(),
-                    mode: "cors"
-                }
-                ).then((response) => (
-                    setProductIds([...productIds, productId]),
-                    setBasketItems([...basketItems, response.data])
-                ))
-            )
+                    mode: 'cors',
+                    body: JSON.stringify({
+                        productId: productId,
+                        quantity: 1,
+                        basketId: '108520d8-90c7-4b42-93e1-260fe2d4a413',
+                    }),
+                });
+                setProductIds([...productIds, productId]);
+                setBasketItems([...basketItems, response.data]);
+            } catch (error) {
+                console.log('Error:', error);
+            }
         }
     }
+
+
 
     return (
         <article>
