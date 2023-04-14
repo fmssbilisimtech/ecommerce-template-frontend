@@ -20,8 +20,10 @@ const LoginButton = () => {
         return localStorage.getItem('user') !== null;
     });
 
+    const [email, setEmail] = useState(() => {
+        return localStorage.getItem('email');
+    });
     const { showModal, setShowModal } = useContext(StoreContext);
-    const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
 
