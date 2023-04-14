@@ -1,6 +1,5 @@
 import React, {useContext, useEffect, useState} from 'react'
 import {Link, NavLink, useHistory, useLocation} from 'react-router-dom'
-import {useAuth0} from '@auth0/auth0-react'
 import {StoreContext} from '../context/index'
 import '../app.css'
 import AuthService from "../services/auth.service";
