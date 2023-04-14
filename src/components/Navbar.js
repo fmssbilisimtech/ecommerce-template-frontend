@@ -16,7 +16,10 @@ const LoginButton = () => {
     function emailChange(e) { setEmail(e.target.value) }
     function passwordChange(e) { setPassword(e.target.value) }
 
-    const { isLogin, setLogin } = useContext(StoreContext);
+    const [isLogin, setLogin] = useState(() => {
+        return localStorage.getItem('user') !== null;
+    });
+
     const { showModal, setShowModal } = useContext(StoreContext);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -37,10 +40,6 @@ const LoginButton = () => {
             }
         )
     }
-
-    useEffect(() => {
-        setLogin(localStorage.getItem('user') != null);
-    }, []);
 
     return (
         <>
