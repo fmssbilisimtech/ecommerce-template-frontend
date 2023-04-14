@@ -17,7 +17,7 @@ const ProductPanel = ({ productId, name, image, price }) => {
             } 
             else {
                 return ( 
-                axios.post(API_URL + "/basket/basket-item", {
+                axios.post(API_URL + "/basket-item/basket-item", {
                     productId: productId,
                     quantity: 1,
                     basketId: '108520d8-90c7-4b42-93e1-260fe2d4a413',
