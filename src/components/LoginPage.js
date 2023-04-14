@@ -21,7 +21,6 @@ export default function SignInPage() {
     function signIn(){
         AuthService.login(email, password).then(
             res =>{
-                debugger
                 const user = JSON.parse(localStorage.getItem('user'));
                 localStorage.setItem("mail", jwtDecode(user.jwtToken).sub);
                 setEmail(localStorage.getItem("mail"));

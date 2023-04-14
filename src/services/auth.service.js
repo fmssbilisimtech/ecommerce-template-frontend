@@ -13,7 +13,6 @@ class AuthService {
                 password,
             })
             .then(response => {
-                debugger
                 if (response.data.jwtToken) {
                     localStorage.setItem("user", JSON.stringify(response.data));
                 }

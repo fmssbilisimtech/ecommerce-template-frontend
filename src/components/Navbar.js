@@ -25,7 +25,6 @@ const LoginButton = () => {
     function signIn() {
         AuthService.login(email, password).then(
             () => {
-                debugger
                 const user = JSON.parse(localStorage.getItem('user'));
                 localStorage.setItem("mail", jwtDecode(user.jwtToken).sub);
                 setEmail(localStorage.getItem("mail"));
