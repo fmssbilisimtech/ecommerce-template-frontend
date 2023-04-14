@@ -33,7 +33,7 @@ pipeline {
         stage('Run') {
             steps {
                 echo 'Runing container'
-                sh "docker run -d -p 55501:55501 --name ecommerce-frontend ecommerce-frontend"
+                sh "docker run -d -p 55501:3000 --name ecommerce-frontend ecommerce-frontend"
             }
         }
 
