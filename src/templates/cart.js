@@ -13,7 +13,7 @@ export default function Cart() {
     const ORDER_URL = 'http://89.19.23.50:9005'
 
     useEffect(() => {
-        axios.get(API_URL + `/basket/basket-basket/108520d8-90c7-4b42-93e1-260fe2d4a413`, 
+        axios.get(API_URL + `/basket`,
         {
             headers: authHeader() 
         }
@@ -23,7 +23,7 @@ export default function Cart() {
     }, [])
 
     const handleAmountChange = (index, value, basketItemId) => {
-        axios.put(API_URL + `/basket/quantity-increment/${basketItemId}`,{
+        axios.put(API_URL + `/basket-item/quantity-increment/${basketItemId}`,{
             basketItemId: basketItemId,
             quantity: value,
         } ,
