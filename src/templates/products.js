@@ -1,4 +1,4 @@
-import React, {useContext, useState} from 'react'
+import React, {useContext} from 'react'
 import {StoreContext} from '../context'
 import ProductPanel from "../components/ProductPanel";
 
@@ -31,26 +31,25 @@ export default function Products() {
         query, setQuery,
         categoryIndex, setCategoryIndex,
         freeShipping, setFreeShipping,
-        price, setPrice, 
+        price, setPrice,
         colorIndex, setColorIndex,
         companyIndex, setCompanyIndex,
         sortByIndex, setSortByIndex,
         viewGrid, setViewGrid,
-        products, clearFilters,
-        pageNumber, setPageNumber
+        products, clearFilters
     } = useContext(StoreContext)
 
-    // const filteredProducts = products && products.filter(product => {
-    //     if(
-    //         (query.trim() !== '' && !product.name.includes(query.trim().toLowerCase())) ||
-    //         ((categoryIndex > -1 && categoryIndex < 6) && product.category !== CATEGORIES[categoryIndex]) ||
-    //         ((companyIndex > -1 && companyIndex < 4) && product.company !== COMPANIES[companyIndex]) ||
-    //         ((colorIndex > -1 && colorIndex < 5) && product.colors.find(c => c !== COLORS[colorIndex])) ||
-    //         (product.price > price) ||
-    //         (freeShipping && (!product.hasOwnProperty('shipping') || !product.shipping))
-    //     ) return false;
-    //     return true;
-    // })
+    const filteredProducts = products && products.filter(product => {
+        if(
+            (query.trim() !== '' && !product.name.includes(query.trim().toLowerCase())) ||
+            ((categoryIndex > -1 && categoryIndex < 6) && product.category !== CATEGORIES[categoryIndex]) ||
+            ((companyIndex > -1 && companyIndex < 4) && product.company !== COMPANIES[companyIndex]) ||
+            ((colorIndex > -1 && colorIndex < 5) && product.colors.find(c => c !== COLORS[colorIndex])) ||
+            (product.price > price) ||
+            (freeShipping && (!product.hasOwnProperty('shipping') || !product.shipping))
+        ) return false;
+        return true;
+    })
 
     const sortProducts = (products, index) => {
         if(index < 0 || index > 4) return products;
@@ -80,59 +79,31 @@ export default function Products() {
         }
     }
 
-    const totalPages = Math.ceil(products.length / 20);
-
-    const handlePrevPage = () => {
-        setPageNumber((prevPage) => prevPage - 1);
-    };
-
-    const handleNextPage = () => {
-        setPageNumber((prevPage) => prevPage + 1);
-    };
-
-    const startIndex = (pageNumber - 1) * 20;
-    const endIndex = startIndex + 20;
-    const currentItems = products.slice(startIndex, endIndex);
-
     return(
         <>
             <section>
                 <div className="tw-container py-10 flex flex-col md:flex-row gap-10">
-                    
+
                     <section id="products" className="w-full">
-                        
+
                         <article id="products-list">
                             <div className="mt-6 grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8">
-                                {
+                                {products == "" ?
+                                    <div
+                                        className="bg-red-100 border border-red-400 text-red-700  py-3 rounded"
+                                        role="alert">
+                                        <strong className="font-bold">Bilgilendirme!</strong>
+                                        <span className="block">Mağazamızda  geçici bir süre satış yapılamamaktadır.</span>
+                                    </div>
+                                    :
+                                    products.map(product => (
+                                        <ProductPanel
+                                            key={product.id}
+                                            {...product}
+                                            grid={viewGrid}
+                                        />
+                                    ))
                                 }
-                            </div>
-                            <div>
-                                <ul>
-                                    {
-                                        products == "" ?
-                                            <div
-                                                className="bg-red-100 border border-red-400 text-red-700  py-3 rounded"
-                                                role="alert">
-                                                <strong className="font-bold">Bilgilendirme!</strong>
-                                                <span className="block">Mağazamızda  geçici bir süre satış yapılamamaktadır.</span>
-                                            </div>
-
-                                        :
-
-                                        products.map(product => (
-                                    <ProductPanel
-                                        key={product.id}
-                                        {...product}
-                                        grid={viewGrid}
-                                    />
-                                    ))}
-                                </ul>
-                                <button onClick={handlePrevPage} disabled={pageNumber === 1}>
-                                    Previous
-                                </button>
-                                <button onClick={handleNextPage} disabled={pageNumber === totalPages}>
-                                    Next
-                                </button>
                             </div>
                         </article>
                     </section>
