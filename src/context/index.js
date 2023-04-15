@@ -26,7 +26,7 @@ const StoreProvider = ({children}) => {
 
     const [showModal, setShowModal] = useState(false);
 
-    const [pageNumber, setPageNumber] = useState(1)
+    const [pageNumber, setPageNumber] = useState(0)
 
     const {response: products, error } = useFetch('http://89.19.23.50:9003/api/v1/products/page/' + pageNumber)
 
