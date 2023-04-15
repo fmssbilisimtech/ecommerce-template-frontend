@@ -111,7 +111,7 @@ export default function Cart() {
                                             <img alt={name} className="object-cover w-16 h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 rounded-md" src={imgUrl}/>
                                             <div>
                                                 <h5 className="text-base md:text-lg lg:text-xl font-semibold">{name}</h5>
-                                                <div className="lg:hidden">{(price * 2).toCurrency()}</div>
+                                                <div className="lg:hidden">{(price * 2)}</div>
                                             </div>
                                         </div>
                                         <Counter
@@ -120,8 +120,8 @@ export default function Cart() {
                                             maxNum={100}
                                             setCount={(value) => handleAmountChange(index, value, basketItemId)}
                                         />
-                                        <h5 className="hidden lg:block">{(price.toCurrency())}</h5>
-                                        <h5 className="hidden lg:block">{((price * quantity).toCurrency())}</h5>
+                                        <h5 className="hidden lg:block">{(price)}</h5>
+                                        <h5 className="hidden lg:block">{((price * quantity))}</h5>
                                         <button className="block ml-3 md:ml-0 w-7 h-7 p-2 bg-red-600 text-white rounded" onClick={() => handleDeleteItem(index, basketItemId)}>
                                             <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 448 512"><path d="M432 32H312l-9.4-18.7A24 24 0 0 0 281.1 0H166.8a23.72 23.72 0 0 0-21.4 13.3L136 32H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16zM53.2 467a48 48 0 0 0 47.9 45h245.8a48 48 0 0 0 47.9-45L416 128H32z"></path></svg>
                                         </button>
@@ -140,7 +140,7 @@ export default function Cart() {
                                     <hr className="my-4"/>
                                     <h4 className="flex justify-center gap-5" style={{ gridTemplateColumns: '200px 1fr' }}>
                                         Order Total:
-                                        <span>{basketData[0]?.data?.totalPrice?.toCurrency()}</span>
+                                        <span>{basketData[0]?.data?.totalPrice}</span>
                                     </h4>
                                 </article>
                                     <button onClick={() => paymentRequest(basketData[0]?.data)} className='btn-sm bg-red-500 text-white text-bold mt-7 text-center'>
