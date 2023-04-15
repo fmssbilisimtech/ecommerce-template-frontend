@@ -26,7 +26,9 @@ const StoreProvider = ({children}) => {
 
     const [showModal, setShowModal] = useState(false);
 
-    const {response: products, error } = useFetch('http://89.19.23.50:9003/api/v1/products')
+    const [pageNumber, setPageNumber] = useState(1)
+
+    const {response: products, error } = useFetch('http://localhost:9003/api/v1/products/' + pageNumber)
 
     if(error) return 'error....';
     
@@ -57,6 +59,7 @@ const StoreProvider = ({children}) => {
             products, error,
             isLogin, setLogin,
             showModal,setShowModal,
+            pageNumber, setPageNumber,
             clearFilters
         }}>
             {products ? children : ''}
