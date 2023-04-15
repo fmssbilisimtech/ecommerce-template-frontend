@@ -28,7 +28,7 @@ const StoreProvider = ({children}) => {
 
     const [pageNumber, setPageNumber] = useState(1)
 
-    const {response: products, error } = useFetch('http://localhost:9003/api/v1/products/' + pageNumber)
+    const {response: products, error } = useFetch('http://localhost:9003/api/v1/page/products/' + pageNumber)
 
     if(error) return 'error....';
     
