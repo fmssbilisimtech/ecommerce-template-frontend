@@ -119,7 +119,7 @@ export default function Products() {
 
                                         :
 
-                                        products.map(product => (
+                                        products.content.map(product => (
                                     <ProductPanel
                                         key={product.id}
                                         {...product}
