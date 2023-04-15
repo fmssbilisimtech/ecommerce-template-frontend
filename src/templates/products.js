@@ -92,7 +92,7 @@ export default function Products() {
 
     const startIndex = (pageNumber - 1) * 20;
     const endIndex = startIndex + 20;
-    const currentItems = products.content.slice(startIndex, endIndex);
+    const currentItems = products.slice(startIndex, endIndex);
 
     return(
         <>
@@ -119,7 +119,7 @@ export default function Products() {
 
                                         :
 
-                                        products.content.map(product => (
+                                        products.map(product => (
                                     <ProductPanel
                                         key={product.id}
                                         {...product}
