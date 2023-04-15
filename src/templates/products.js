@@ -92,7 +92,7 @@ export default function Products() {
 
     const startIndex = (pageNumber - 1) * 20;
     const endIndex = startIndex + 20;
-    const currentItems = products.slice(startIndex, endIndex);
+    const currentItems = products.content.slice(startIndex, endIndex);
 
     return(
         <>
