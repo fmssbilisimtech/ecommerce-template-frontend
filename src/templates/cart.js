@@ -36,7 +36,7 @@ export default function Cart() {
     }
 
     const handleDeleteItem = (index, basketItemId) => {
-        axios.delete(API_URL + `/basket/basket-item/${basketItemId}`,
+        axios.delete(API_URL + `/basket-item/${basketItemId}`,
             { 
                 headers: authHeader() 
             }
