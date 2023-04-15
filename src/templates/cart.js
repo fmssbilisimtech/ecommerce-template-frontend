@@ -47,9 +47,9 @@ export default function Cart() {
         })
     }
 
-    const handleClearCart = () => {
+    const handleClearCart = (basketId) => {
         if(window.confirm("You're about to clear shopping cart. Is that okay?")) {
-            axios.delete(API_URL + `/basket/108520d8-90c7-4b42-93e1-260fe2d4a413`,
+            axios.delete(API_URL + `/basket/${basketId}`,
             {
                 headers: authHeader() 
             }
@@ -132,7 +132,7 @@ export default function Cart() {
                         <hr className="mt-10"/>
                         <div className="flex justify-between py-8">
                             <Link to="/" className="btn-sm w-max bg-blue-500 text-white text-bold">Continue Shopping</Link>
-                            <button onClick={handleClearCart} className="btn-sm font-bold text-red-900 bg-red-300">Clear Cart</button>
+                            <button onClick={() => handleClearCart(basketData[0]?.data?.basketId)} className="btn-sm font-bold text-red-900 bg-red-300">Clear Cart</button>
                         </div>
                         <section className="flex justify-center lg:justify-end">
                             <div className="w-full md:w-auto">
