@@ -12,15 +12,19 @@ export default function Cart() {
     const API_URL = 'http://89.19.23.50:9006/api/v1'
     const ORDER_URL = 'http://89.19.23.50:9005'
 
-    useEffect(() => {
+    useEffect(()=>{
+        getBasket()
+    },basketItems)
+    function getBasket(){
         axios.get(API_URL + `/basket`,
-        {
-            headers: authHeader() 
-        }
+            {
+                headers: authHeader()
+            }
         ).then((data) => {
             setBasketData(oldArray => [...oldArray, data])
         })
-    }, [])
+    }
+
 
     const handleAmountChange = (index, value, basketItemId) => {
         axios.put(API_URL + `/basket-item/quantity-increment/${basketItemId}`,{
@@ -32,6 +36,8 @@ export default function Cart() {
         }
         ).then((data) => {
             setBasketData([data])
+            getBasket()
+
         })
     }
 
@@ -44,7 +50,7 @@ export default function Cart() {
             setProductIds(productIds.filter((_, i) => i !== index))
             setBasketData([{data: response.data}])
             setBasketItems(basketItems.filter((basket,i) => index !== i ))
-            window.location.reload()
+            getBasket()
         })
     }
 
@@ -59,18 +65,14 @@ export default function Cart() {
                 setBasketData([])
                 setProductIds([])
                 setBasketItems([])
+                getBasket()
             })
         }
     }
 
     const paymentRequest = (basketData) => {
         axios.post(ORDER_URL + `/api/v1/orders/place-order` , {
-            userId: 'c39cc29c-169c-4e0c-9d69-4c781d63cdee',
-            basketResponseDto:{
-                basketItemList: basketData.basketItemList,
-                totalPrice: basketData.totalPrice,
-                basketId: '108520d8-90c7-4b42-93e1-260fe2d4a413',
-                },
+            basketResponseDto:basketData.data,
             },
             {
                 headers: authHeader() 
@@ -83,6 +85,7 @@ export default function Cart() {
             setBasketData([])
             setProductIds([])
             setBasketItems([])
+            getBasket()
         })
     }
 

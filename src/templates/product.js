@@ -89,7 +89,7 @@ export default function Product({ id }) {
                                     <p>({reviews} customer reviews)</p>
                                 </div>
                             </div>
-                            <h4 className="font-bold text-lg lg:text-2xl text-blue-400">{(price.toCurrency())}</h4>
+                            <h4 className="font-bold text-lg lg:text-2xl text-blue-400">{(price)}</h4>
                             <p className="leading-loose">{description}</p>
                             <div className="w-3/5 lg:w-2/5 flex flex-col gap-4">
                                 <p className="grid grid-cols-2">
