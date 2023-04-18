@@ -72,7 +72,7 @@ export default function Cart() {
 
     const paymentRequest = (basketData) => {
         axios.post(ORDER_URL + `/api/v1/orders/place-order` , {
-            basketResponseDto:basketData.data,
+            basketResponseDto:basketData,
             },
             {
                 headers: authHeader() 
@@ -115,7 +115,7 @@ export default function Cart() {
                                             <img alt={name} className="object-cover w-16 h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 rounded-md" src={imgUrl}/>
                                             <div>
                                                 <h5 className="text-base md:text-lg lg:text-xl font-semibold">{name}</h5>
-                                                <div className="lg:hidden">{(price * 2)}</div>
+                                                <div className="lg:hidden">{(price)}</div>
                                             </div>
                                         </div>
                                         <Counter

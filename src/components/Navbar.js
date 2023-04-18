@@ -156,18 +156,6 @@ const LoginButton = () => {
     )
 }
 
-const LogoutButton = () => {
-
-
-    return (
-        <button className="flex text-2xl items-center lg:text-xl gap-3 sm:flex-row" onClick={() => localStorage.clear()}>
-            Log Out
-            <svg className="w-8 lg:w-7" stroke="#ef4444" fill="#ef4444" strokeWidth="0" viewBox="0 0 640 512" xmlns="http://www.w3.org/2000/svg"><path d="M624 208H432c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h192c8.8 0 16-7.2 16-16v-32c0-8.8-7.2-16-16-16zm-400 48c70.7 0 128-57.3 128-128S294.7 0 224 0 96 57.3 96 128s57.3 128 128 128zm89.6 32h-16.7c-22.2 10.2-46.9 16-72.9 16s-50.6-5.8-72.9-16h-16.7C60.2 288 0 348.2 0 422.4V464c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48v-41.6c0-74.2-60.2-134.4-134.4-134.4z"></path></svg>
-        </button>
-    );
-}
-
-
 const CartButton = ({ items }) => {
     const [isHovering, setIsHovering] = useState(false);
     const handleMouseOver = () => {
@@ -207,9 +195,11 @@ const HoverableDiv = ({ handleMouseOver, handleMouseOut }) => {
 
 const HoverText = () => {
     return (
-        <div style={{ display: 'flex', justifyContent: 'center' }}>
-            <RenderBasketList />
-        </div>
+            <div style={{ display: 'flex', justifyContent: 'center' }}>
+                { window.innerWidth > 768 ?
+                <RenderBasketList /> : ""
+                }
+            </div>
     );
 };
 
@@ -249,16 +239,6 @@ function Navbar() {
                             <LoginButton />
                         }
                         <CartButton items={productIds.length} />
-                    </div>
-                </div>
-            </div>
-            <div className={`z-20 fixed top-0 left-0 w-full h-screen bg-blue-500 px-5 py-8 transition-transform duration-500 ease-in-out transform  ${mobileMenuOpen ? '' : '-translate-x-full'}`}>
-                <div className="w-full h-full text-blue-50">
-                    <div className="mt-10 flex gap-20 justify-center align-center row">
-                        <CartButton items={productIds.length} />
-                        {
-                            <LoginButton />
-                        }
                     </div>
                 </div>
             </div>
