@@ -48,9 +48,9 @@ export default function Cart() {
             }
             ).then((response) => {
             setProductIds(productIds.filter((_, i) => i !== index))
-            setBasketData([{data: response.data}])
             setBasketItems(basketItems.filter((basket,i) => index !== i ))
-            getBasket()
+            setBasketData([{data: response.data}])
+            window.location.reload()
         })
     }
 
